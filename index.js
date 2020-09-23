@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-const getInput = (input, validator) => {
+// USEINPUT HOOKS
+export const getInput = (input, validator) => {
   const [value, setValue] = useState(input);
   let willUpdate = false;
   const onChange = (e) => {
@@ -15,12 +16,11 @@ const getInput = (input, validator) => {
   return { value, onChange };
 };
 
-export default App = () => {
-  const maxLen = (value) => value.length <= 10;
-  const name = getInput("Mr.", maxLen);
-  return (
-    <div>
-      <input placeholder="Name" {...name} />
-    </div>
-  );
+// USETABS HOOKS
+const changeSection = (index, wholeFile) => {
+  const [indexNum, setIndexNum] = useState(index);
+  return {
+    valueText: wholeFile[indexNum].title,
+    changeIndex: setIndexNum,
+  };
 };
