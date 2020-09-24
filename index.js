@@ -17,10 +17,11 @@ export const getInput = (input, validator) => {
 };
 
 // USETABS HOOKS
-const changeSection = (index, wholeFile) => {
-  const [indexNum, setIndexNum] = useState(index);
+const useTabs = (index, contents) => {
+  const [tabIndex, changeTabIndex] = useState(index);
+  let value = contents[tabIndex].content;
   return {
-    valueText: wholeFile[indexNum].title,
-    changeIndex: setIndexNum,
+    content: value,
+    changeContent: changeTabIndex
   };
 };

@@ -11,7 +11,7 @@ Collections of React Hooks
 - [ ] useNetwork
 - [ ] useNotifications
 - [ ] useScroll
-- [ ] useTabs
+- [ x] useTabs
 - [ ] usePreventLeave
 - [ ] useConfirm
 - [ ] useAxios
