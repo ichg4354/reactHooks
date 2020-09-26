@@ -36,3 +36,20 @@ const editTitle = (initalTitle) => {
   useEffect(change, [title]);
   return { changeTitle };
 };
+
+// USECLICK HOOKS
+const useClick = (onClick) => {
+  if (typeof onClick !== "function") {
+    return;
+  }
+  const titleRef = useRef();
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.addEventListener("click", onClick);
+    }
+    return () => {
+      titleRef.current.removeEventListener("click", onClick);
+    };
+  }, []);
+  return titleRef;
+};
