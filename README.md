@@ -2,16 +2,16 @@
 
 Collections of React Hooks
 
-- [ ] useTitle
+- [x] useTitle
 - [x] useInput
 - [ ] usePageLeave
-- [ ] useClick
+- [x] useClick
 - [ ] useFadeIn
 - [ ] useHover
 - [ ] useNetwork
 - [ ] useNotifications
 - [ ] useScroll
-- [ x] useTabs
+- [x] useTabs
 - [ ] usePreventLeave
 - [ ] useConfirm
 - [ ] useAxios

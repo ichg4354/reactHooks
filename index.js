@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // USEINPUT HOOKS
 export const getInput = (input, validator) => {
@@ -22,6 +22,17 @@ const useTabs = (index, contents) => {
   let value = contents[tabIndex].content;
   return {
     content: value,
-    changeContent: changeTabIndex
+    changeContent: changeTabIndex,
   };
+};
+
+// USETITLE HOOKS
+const editTitle = (initalTitle) => {
+  const [title, changeTitle] = useState(initalTitle);
+  const change = () => {
+    const titleDOM = document.querySelector("title");
+    titleDOM.innerText = title;
+  };
+  useEffect(change, [title]);
+  return { changeTitle };
 };
