@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-// USEINPUT HOOK
+// USEINPUT HOOKS
 export const getInput = (input, validator) => {
   const [value, setValue] = useState(input);
   let willUpdate = false;
@@ -9,14 +9,14 @@ export const getInput = (input, validator) => {
     if (typeof validator === "function") {
       willUpdate = validator(value);
       if (willUpdate) {
-        setValue(value)
+        setValue(value);
       }
     }
   };
   return { value, onChange };
 };
 
-// USETABS HOOK
+// USETABS HOOKS
 const useTabs = (index, contents) => {
   const [tabIndex, changeTabIndex] = useState(index);
   let value = contents[tabIndex].content;
@@ -26,7 +26,7 @@ const useTabs = (index, contents) => {
   };
 };
 
-// USETITLE HOOK
+// USETITLE HOOKS
 const editTitle = (initalTitle) => {
   const [title, changeTitle] = useState(initalTitle);
   const change = () => {
@@ -37,7 +37,7 @@ const editTitle = (initalTitle) => {
   return { changeTitle };
 };
 
-// USECLICK HOOK
+// USECLICK HOOKS
 const useClick = (onClick) => {
   if (typeof onClick !== "function") {
     return;
@@ -47,22 +47,36 @@ const useClick = (onClick) => {
     if (titleRef.current) {
       titleRef.current.addEventListener("click", onClick);
     }
-    return () => 
+    return () => {
       titleRef.current.removeEventListener("click", onClick);
     };
   }, []);
   return titleRef;
 };
 
-
 // USECONFIRM HOOK
-const useConfirm = (message, originalFunction) => {
-  if (typeof originalFunction !== "function") {
+const useConfirm = (message, onConfirm, onCancel) => {
+  if (!onConfirm || typeof onConfirm !== "function") {
+    return;
+  }
+  if (!onCancel || typeof onCancel !== "function") {
     return;
   }
   if (confirm(message)) {
-    originalFunction();
+    onConfirm();
   } else {
-    console.log("abort");
+    onCancel();
   }
+};
+
+// USEPREVENTLEAVE HOOK
+const usePreventLeave = () => {
+  const listener = (event) => {
+    event.preventDefault();
+    event.returnValue = "NOPE";
+  };
+  const protectLeave = () => window.addEventListener("beforeunload", listener);
+  const unProtectLeave = () =>
+    window.removeEventListener("beforeunload", listener);
+  return { protectLeave, unProtectLeave };
 };
