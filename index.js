@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-// USEINPUT HOOKS
+// USEINPUT HOOK
 export const getInput = (input, validator) => {
   const [value, setValue] = useState(input);
   let willUpdate = false;
@@ -9,14 +9,14 @@ export const getInput = (input, validator) => {
     if (typeof validator === "function") {
       willUpdate = validator(value);
       if (willUpdate) {
-        setValue(value);
+        setValue(value)
       }
     }
   };
   return { value, onChange };
 };
 
-// USETABS HOOKS
+// USETABS HOOK
 const useTabs = (index, contents) => {
   const [tabIndex, changeTabIndex] = useState(index);
   let value = contents[tabIndex].content;
@@ -26,7 +26,7 @@ const useTabs = (index, contents) => {
   };
 };
 
-// USETITLE HOOKS
+// USETITLE HOOK
 const editTitle = (initalTitle) => {
   const [title, changeTitle] = useState(initalTitle);
   const change = () => {
@@ -37,7 +37,7 @@ const editTitle = (initalTitle) => {
   return { changeTitle };
 };
 
-// USECLICK HOOKS
+// USECLICK HOOK
 const useClick = (onClick) => {
   if (typeof onClick !== "function") {
     return;
@@ -47,9 +47,22 @@ const useClick = (onClick) => {
     if (titleRef.current) {
       titleRef.current.addEventListener("click", onClick);
     }
-    return () => {
+    return () => 
       titleRef.current.removeEventListener("click", onClick);
     };
   }, []);
   return titleRef;
+};
+
+
+// USECONFIRM HOOK
+const useConfirm = (message, originalFunction) => {
+  if (typeof originalFunction !== "function") {
+    return;
+  }
+  if (confirm(message)) {
+    originalFunction();
+  } else {
+    console.log("abort");
+  }
 };
