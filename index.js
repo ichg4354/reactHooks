@@ -80,3 +80,17 @@ const usePreventLeave = () => {
     window.removeEventListener("beforeunload", listener);
   return { protectLeave, unProtectLeave };
 };
+
+// USEBEFORELEAVE HOOK
+const useBeforeLeave = (beforeLeave) => {
+  if (typeof beforeLeave !== "function") {
+    return;
+  }
+  const mouseLeaveHandler = (e) => {
+    const { clientY } = e;
+    if (clientY <= 0) {
+      beforeLeave();
+    }
+  };
+  document.addEventListener("mouseleave", mouseLeaveHandler);
+};
