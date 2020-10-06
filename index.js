@@ -17,7 +17,7 @@ export const getInput = (input, validator) => {
 };
 
 // USETABS HOOKS
-const useTabs = (index, contents) => {
+const useTabs = (index, contents) => {=
   const [tabIndex, changeTabIndex] = useState(index);
   let value = contents[tabIndex].content;
   return {
@@ -91,6 +91,23 @@ const useBeforeLeave = (beforeLeave) => {
     if (clientY <= 0) {
       beforeLeave();
     }
+    useEffect(() => {
+      document.addEventListener("mouseleave", mouseLeaveHandler);
+      return () =>
+        document.removeEventListener("mouseleave", mouseLeaveHandler);
+    }, []);
   };
-  document.addEventListener("mouseleave", mouseLeaveHandler);
+};
+
+
+// USEFADEIN HOOK
+const useFadeIn = (duration) => {
+  const ref = useRef();
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.style.transition = `opacity ${duration}s`;
+      ref.current.style.opacity = 1;
+    }
+  }, []);
+  return { ref: ref, style:{opacity:0} };
 };
