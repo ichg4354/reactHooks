@@ -111,3 +111,19 @@ const useFadeIn = (duration) => {
   }, []);
   return { ref: ref, style:{opacity:0} };
 };
+
+// USENETWORK HOOK
+const useNetwork = (onChange) => {
+  const [onlineState, editOnlineState] = useState(navigator.onLine);
+  const handle = () => {
+    if (typeof onChange === "function") {
+      onChange();
+    }
+    editOnlineState(navigator.onLine);
+  };
+  useEffect(() => {
+    window.addEventListener("online", handle);
+    window.addEventListener("offline", handle);
+  });
+  return onlineState;
+};
