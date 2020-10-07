@@ -144,3 +144,14 @@ const useScroll = () => {
   }, []);
   return scroll.y;
 };
+
+// USEFULLSCREEN HOOK
+const useFullScreen = () => {
+  const ref = useRef();
+  const onClickBig = () => {
+    if (ref.current) {
+      ref.current.requestFullscreen();
+    }
+  };
+  return { ref, onClickBig };
+};

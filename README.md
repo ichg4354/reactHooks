@@ -15,3 +15,4 @@ Collections of React Hooks
 - [x] useBeforeLeave
 - [x] useConfirm
 - [ ] useAxios
+- [x] useFullscreen
