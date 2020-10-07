@@ -124,6 +124,23 @@ const useNetwork = (onChange) => {
   useEffect(() => {
     window.addEventListener("online", handle);
     window.addEventListener("offline", handle);
+    return () => {
+      window.removeEventListener("online", handle);
+      window.removeEventListener("offline", handle);
+    }
   });
   return onlineState;
+};
+
+
+// USESCROLL HOOK
+const useScroll = () => {
+  const [scroll, setScroll] = useState({ x: 0, y: 0 });
+  const onScroll = () => {
+    setScroll({ x: window.scrollX, y: window.scrollY });
+  };
+  useEffect(() => {
+    document.addEventListener("scroll", onScroll);
+  }, []);
+  return scroll.y;
 };

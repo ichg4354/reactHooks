@@ -10,7 +10,7 @@ Collections of React Hooks
 - [ ] useHover
 - [x] useNetwork
 - [ ] useNotifications
-- [ ] useScroll
+- [x] useScroll
 - [x] useTabs
 - [x] useBeforeLeave
 - [x] useConfirm
