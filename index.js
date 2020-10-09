@@ -155,3 +155,29 @@ const useFullScreen = () => {
   };
   return { ref, onClickBig };
 };
+
+
+// USENOTIFICATION HOOK
+const useNotification = (MESSAGE) => {
+  const triggerNotif = () => {
+    if (!("Notification" in window)) {
+      alert("NOTIFICATION is disABLEd");
+    } else {
+      if (Notification.permission === "granted") {
+        let notif = new Notification(MESSAGE);
+        console.log("already granted");
+      } else if (Notification.permission === "denied") {
+        Notification.requestPermission((permission) => {
+          if (permission === "granted") {
+            console.log("now garnted");
+            let notif = new Notification(MESSAGE);
+          } else {
+            console.log("fuck");
+            return;
+          }
+        });
+      }
+    }
+  };
+  return triggerNotif;
+};
