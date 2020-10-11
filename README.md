@@ -7,12 +7,12 @@ Collections of React Hooks
 - [] usePageLeave
 - [x] useClick
 - [x] useFadeIn
-- [ ] useHover
+- [] useHover
 - [x] useNetwork
 - [x] useNotifications
 - [x] useScroll
 - [x] useTabs
 - [x] useBeforeLeave
 - [x] useConfirm
-- [ ] useAxios
+- [x] useAxios
 - [x] useFullscreen

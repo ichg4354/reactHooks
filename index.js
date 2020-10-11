@@ -181,3 +181,34 @@ const useNotification = (MESSAGE) => {
   };
   return triggerNotif;
 };
+
+// USEAXIOS HOOK
+const useAxios = (ops, defaultAxios = axios) => {
+  if (!ops) {
+    return;
+  }
+  const [count, setCount] = useState(0);
+  const [
+    state = {
+      Loading: true,
+      Error: null,
+      Data: null
+    },
+    setState
+  ] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(ops)
+      .then((value) => setState({ ...state, Loading: false, Data: value }));
+  }, [count]);
+
+  const getAgain = () => {
+    console.log("Loading..");
+    setState({ ...state, Loading: true });
+    setCount(Date.now());
+  };
+
+  return { ...state, getAgain };
+};
+
